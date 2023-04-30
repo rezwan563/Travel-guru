@@ -1,8 +1,17 @@
 /* eslint-disable no-unused-vars */
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../provider/AuthProvider';
+import "./Header.css"
 
 const Header = () => {
+    const { user, logOut } = useContext(AuthContext)
+
+    const handleLogout = () => {
+        logOut()
+            .then(console.log("Logout successful"))
+            .catch(error => console.log(error.message))
+    }
     return (
         <div>
             <div className='d-flex justify-content-center gap-5 py-3'>
@@ -17,7 +26,15 @@ const Header = () => {
                     <Link className='me-2 text-black' to="/destination">Destination</Link>
                     <Link className='me-2 text-black' to='/blog'>Blog</Link>
                     <Link className='me-2 text-black' to='/contact'>Contact</Link>
-                    <button className='btn btn-warning'><Link to='/auth_user'className='text-black'>Login</Link></button>
+                    {
+                        user && <img className='avatar-img me-2' src={user.photoURL} alt="" />
+                    }
+                    {
+                        user ? <button onClick={handleLogout} className='btn btn-warning'>Logout</button>
+                            :
+                            <button className='btn btn-warning'><Link to='/auth_user' className='text-black'>Login</Link></button>
+
+                    }
                 </div>
             </div>
 

@@ -1,17 +1,28 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Button, Container, Form } from 'react-bootstrap';
 import { FaGoogle } from 'react-icons/fa'
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../provider/AuthProvider';
 
 const Login = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState('')
 
+    const { googleLogin } = useContext(AuthContext)
+
     const handleLogin = (e) => {
         e.preventDefault()
         console.log(email, password,);
+    }
+
+    const handleGoogleLogin = () => {
+        googleLogin()
+            .then(result =>{
+                console.log("Google login successful")
+            })
+            .catch(error => console.log(error.message))
     }
     return (
         <Container>
@@ -44,7 +55,7 @@ const Login = () => {
                         <Form.Text>Don't have an accout?<span><Link to='/auth_user/register'> Create one</Link></span></Form.Text>
                     </Form>
                     <div className='d-flex justify-content-center mt-2'>
-                        <button className='btn border border-2'><FaGoogle className='me-2 fs-5'></FaGoogle> Continue with Google</button>
+                        <button onClick={handleGoogleLogin} className='btn border border-2'><FaGoogle className='me-2 fs-5'></FaGoogle> Continue with Google</button>
                     </div>
 
 
