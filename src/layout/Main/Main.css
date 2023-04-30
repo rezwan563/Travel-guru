@@ -1,9 +1,9 @@
 .bg-img {
     background-image: url('https://media.istockphoto.com/id/637491930/photo/marigot-saint-martin-skyline.jpg?s=612x612&w=0&k=20&c=sWYgruqhfiFHWtcxSQYPbWA9OLeErKOrfoX69yxn0PQ=');
     background-color: #cccccc;
-    height: 100vh;
+    /* height: 100vh; */
     background-position: center;
-    background-repeat: no-repeat;
+    background-repeat:repeat;
     background-size: cover;
     position: relative;
 }

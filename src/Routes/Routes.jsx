@@ -6,12 +6,20 @@ import Destination from "../pages/Destination";
 import Blog from "../pages/Blog";
 import Contact from "../pages/Contact";
 import Login from "../pages/Login";
+import Home from "../pages/Home";
+import LoginLayout from "../layout/LoginLayout/LoginLayout";
+import HomeContainer from "../pages/HomeContainer";
+import BookingLayout from "../layout/BookingLayout/BookingLayout";
 
 const router = createBrowserRouter([
     {
         path: '/',
         element: <Main></Main>,
         children: [
+            {
+                path: '/',
+                element: <HomeContainer></HomeContainer>,
+            },
             {
                 path: 'news',
                 element: <News></News>
@@ -28,13 +36,26 @@ const router = createBrowserRouter([
                 path: 'contact',
                 element: <Contact></Contact>
             },
-            {
-                path: 'login',
-                element: <Login></Login>
-            }
+
+          
         ]
        
     },
+    {
+        path: '/auth_user',
+        element: <LoginLayout></LoginLayout>,
+        children: [
+            {
+                path: '/auth_user/',
+                element: <Login></Login>
+            }
+        ]
+    },
+    {
+        path: '/booking',
+        element: <BookingLayout></BookingLayout>,
+        
+    }
 
 ]);
 
