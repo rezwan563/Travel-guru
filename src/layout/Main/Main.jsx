@@ -7,8 +7,8 @@ import "./Main.css"
 const Main = () => {
     return (
         <div className='bg-img'>
-            <h1>This is main section</h1>
-           
+           <Header></Header>
+           <Outlet></Outlet>
         </div>
     );
 };

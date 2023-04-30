@@ -1,12 +1,12 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
 
-const Login = () => {
+const News = () => {
     return (
         <div>
-            <h2>This is login</h2>
+            <h1>This is news</h1>
         </div>
     );
 };
 
-export default Login;
+export default News;
