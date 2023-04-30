@@ -17,7 +17,7 @@ const Home = ({location}) => {
                     <div className='text-white'>
                         <h1 className=''>{destination}</h1>
                         <h6>{description}</h6>
-                        <Link to='/booking'><button className='btn btn-warning'>Book Now!</button></Link>
+                        <Link to={`/booking/${id}`}><button className='btn btn-warning'>Book Now!</button></Link>
                     </div>
                 </div>
                 <div className='col col-lg-6 py-2'>
