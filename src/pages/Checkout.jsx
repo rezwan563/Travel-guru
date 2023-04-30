@@ -1,16 +1,8 @@
 
-import GoogleMapReact from 'google-map-react';
-const AnyReactComponent = ({text}) => <div>{text}</div>
-
+import { Map, Marker } from "pigeon-maps"
 const Checkout = () => {
 
-    const defaultProps = {
-        center: {
-            lat: 10.998356902,
-            lng: 77.01502627,
-        },
-        zoom: 11
-    };
+
 
     return (
         <div>
@@ -20,24 +12,15 @@ const Checkout = () => {
                     <div className="col">
 
                     </div>
-                    <div className="col" style={{height: '100vh', width: '100%'}}>
-                        {/* <GoogleMapReact
-                            bootstrapURLKeys={{key: ""}}
-                            defaultCenter={defaultProps.center}
-                            defaultZoom={defaultProps.zoom}
-                        >
-                            <AnyReactComponent
-                                lat={59.955413}
-                                lng={30.337844}
-                                text="My Marker"
-                            />
-
-                        </GoogleMapReact> */}
+                    <div className="col" >
+                        <Map height='100vh' defaultCenter={[23.43, 90.25]} defaultZoom={10}>
+                            <Marker width={50} anchor={[23.43, 90.25]} />
+                        </Map>
                     </div>
                 </div>
-            
+
             </div>
-            
+
         </div>
     );
 };

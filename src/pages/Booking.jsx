@@ -4,12 +4,13 @@ import { Link, useLoaderData } from 'react-router-dom';
 import { DateRange } from 'react-date-range';
 import { addDays } from 'date-fns'
 import { useState } from "react";
+import { FaArrowRight } from "react-icons/fa";
 
 const Booking = () => {
     const [state, setState] = useState([
         {
             startDate: new Date(),
-            endDate: addDays(new Date(), 7),
+            endDate: addDays(new Date(), 0),
             key: 'selection'
         }
     ])
@@ -17,7 +18,6 @@ const Booking = () => {
     const locationDetails = useLoaderData();
     // eslint-disable-next-line no-unused-vars
     const { id, name, description } = locationDetails;
-    console.log(locationDetails);
 
     return (
         <div className='bg-img'>
@@ -38,7 +38,7 @@ const Booking = () => {
 
                         </DateRange>
                         <br />
-                        <Link to='/booking/checkout'><button className="btn btn-warning my-3">Continue</button></Link>
+                        <Link to='/booking/checkout'><button className="btn btn-warning my-3">Continue <FaArrowRight></FaArrowRight></button></Link>
                     </div>
                 </div>
             </div>

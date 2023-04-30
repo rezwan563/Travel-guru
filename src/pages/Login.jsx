@@ -4,22 +4,30 @@ import { Button, Container, Form } from 'react-bootstrap';
 import { FaGoogle } from 'react-icons/fa'
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../provider/AuthProvider';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const Login = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState('')
+    const [hidden, setHidden] = useState(true);
+    const [accepted, setAccepted] = useState(false)
 
-    const { googleLogin } = useContext(AuthContext)
+    const { googleLogin, emailLogin } = useContext(AuthContext)
 
     const handleLogin = (e) => {
         e.preventDefault()
-        console.log(email, password,);
+        emailLogin(email, password)
+        .then(console.log("Successful login"))
+        .catch(error => {
+            console.log(error.message)
+            setError(error.message);
+        })
     }
 
     const handleGoogleLogin = () => {
         googleLogin()
-            .then(result =>{
+            .then(result => {
                 console.log("Google login successful")
             })
             .catch(error => console.log(error.message))
@@ -32,23 +40,28 @@ const Login = () => {
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label>Email address</Form.Label>
                             <Form.Control onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Enter email" required />
-                            <Form.Text className="text-muted">
-                                We'll never share your email with anyone else.
-                            </Form.Text>
+                            
                         </Form.Group>
 
                         <Form.Group className="mb-3" controlId="formBasicPassword">
                             <Form.Label>Password</Form.Label>
-                            <Form.Control onChange={(e) => setPassword(e.target.value)} type="password"
+                            <Form.Control onChange={(e) => setPassword(e.target.value)} type={hidden ? 'password' : 'text'}
                                 placeholder="Password" required />
+                            {
+                                hidden ? <FaEyeSlash onClick={() => setHidden(!hidden)}></FaEyeSlash>
+                                    :
+                                    <FaEye onClick={() => {
+                                        setHidden(!hidden)
+                                    }}></FaEye>
+                            }
                         </Form.Group>
                         <Form.Text className={error && 'text-dange'}>
-                            {error}
+                            {error && error}
                         </Form.Text>
                         <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                            <Form.Check type="checkbox" label="Check me out" required />
+                            <Form.Check onChange={(e) => setAccepted(e.target.checked)} type="checkbox" label="Check me out" required />
                         </Form.Group>
-                        <Button variant="primary" type="submit">
+                        <Button disabled={!accepted} variant="primary" type="submit">
                             Login
                         </Button>
                         <br />
