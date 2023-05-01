@@ -38,7 +38,7 @@ const Booking = () => {
 
                         </DateRange>
                         <br />
-                        <Link to='/booking/checkout'><button className="btn btn-warning my-3">Continue <FaArrowRight></FaArrowRight></button></Link>
+                        <Link to={`/booking/${id}/checkout`}><button className="btn btn-warning my-3">Continue <FaArrowRight></FaArrowRight></button></Link>
                     </div>
                 </div>
             </div>

@@ -12,6 +12,7 @@ import BookingLayout from "../layout/BookingLayout/BookingLayout";
 import Booking from "../pages/Booking"
 import Register from "../pages/Register";
 import Checkout from "../pages/Checkout";
+import PrivateRoute from "../provider/PrivateRoute";
 
 const router = createBrowserRouter([
     {
@@ -69,8 +70,9 @@ const router = createBrowserRouter([
             },
             
             {
-                path: 'checkout',
-                element: <Checkout></Checkout>
+                path: ':id/checkout',
+                element: <PrivateRoute><Checkout></Checkout></PrivateRoute>,
+                loader: ({params}) => fetch(`http://localhost:5000/booking/${params.id}`),
             }
         ]
         

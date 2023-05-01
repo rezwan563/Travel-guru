@@ -2,7 +2,7 @@
 import React, { useContext, useState } from 'react';
 import { Button, Container, Form } from 'react-bootstrap';
 import { FaGoogle } from 'react-icons/fa'
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../provider/AuthProvider';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
@@ -12,16 +12,25 @@ const Login = () => {
     const [error, setError] = useState('')
     const [hidden, setHidden] = useState(true);
     const [accepted, setAccepted] = useState(false)
+    const location = useLocation()
+    const navigate = useNavigate();
+    const from = location.state?.from?.pathname || '/';
 
     const { googleLogin, emailLogin } = useContext(AuthContext)
 
     const handleLogin = (e) => {
         e.preventDefault()
         emailLogin(email, password)
-        .then(console.log("Successful login"))
+        .then(result => {
+            console.log(result.user);
+            e.target.reset();
+            navigate(from);
+
+        })
         .catch(error => {
             console.log(error.message)
             setError(error.message);
+            
         })
     }
 
@@ -32,6 +41,9 @@ const Login = () => {
             })
             .catch(error => console.log(error.message))
     }
+
+    
+
     return (
         <Container>
             <div className=''>

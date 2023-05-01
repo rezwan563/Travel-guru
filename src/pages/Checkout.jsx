@@ -1,20 +1,30 @@
 
 import { Map, Marker } from "pigeon-maps"
+import { useLoaderData } from "react-router-dom";
+import HotelComponent from "./HotelComponent";
 const Checkout = () => {
 
+    const locationDetails = useLoaderData();
+    console.log(locationDetails);
 
-
+    const { name, latitude, longitude } = locationDetails;
+    
+    const mapLocationArray = [latitude, longitude];
+    console.log({mapLocationArray});
+     
     return (
         <div>
             <div className="container">
-                <h1>This is checkout Page</h1>
+                <h1>{name}</h1>
                 <div className="row">
                     <div className="col">
-
+                        {
+                            locationDetails.hotels.map(hotel => <HotelComponent key={hotel.id} hotel={hotel}></HotelComponent>)
+                        }
                     </div>
                     <div className="col" >
-                        <Map height='100vh' defaultCenter={[23.43, 90.25]} defaultZoom={10}>
-                            <Marker width={50} anchor={[23.43, 90.25]} />
+                        <Map height={500} defaultCenter={mapLocationArray} defaultZoom={10}>
+                            <Marker width={50} anchor={mapLocationArray} />
                         </Map>
                     </div>
                 </div>
