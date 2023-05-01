@@ -1,16 +1,17 @@
 /* eslint-disable no-unused-vars */
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../../../provider/AuthProvider';
 import "./Header.css"
+import ActiveLink from '../ActiveLink/ActiveLink';
 
 const Header = () => {
     const { user, logOut } = useContext(AuthContext)
 
     const handleLogout = () => {
         logOut()
-            .then(console.log("Logout successful"))
-            .catch(error => console.log(error.message))
+            .then()
+            .catch()
     }
     return (
         <div>
@@ -22,10 +23,11 @@ const Header = () => {
                     <input type="search" name="destination" placeholder='travel destination' id="" />
                 </div>
                 <div className=''>
-                    <Link className='me-2 text-black' to='/news'>News</Link>
-                    <Link className='me-2 text-black' to="/destination">Destination</Link>
-                    <Link className='me-2 text-black' to='/blog'>Blog</Link>
-                    <Link className='me-2 text-black' to='/contact'>Contact</Link>
+                
+                    <ActiveLink className='me-2 text-black' to='/news'>News</ActiveLink>
+                    <ActiveLink className='me-2 text-black' to="/destination">Destination</ActiveLink>
+                    <ActiveLink className='me-2 text-black' to='/blog'>Blog</ActiveLink>
+                    <ActiveLink className='me-2 text-black' to='/contact'>Contact</ActiveLink>
                     {
                         user && <img className='avatar-img me-2' src={user.photoURL} alt="" />
                     }

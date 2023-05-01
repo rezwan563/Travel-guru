@@ -23,7 +23,7 @@ const Login = () => {
         e.preventDefault()
         emailLogin(email, password)
         .then(result => {
-            console.log(result.user);
+            // console.log(result.user);
             e.target.reset();
             navigate(from);
 
