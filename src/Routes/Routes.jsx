@@ -66,13 +66,13 @@ const router = createBrowserRouter([
             {
                 path: ':id',
                 element: <Booking></Booking>,
-                loader: ({params}) => fetch(`http://localhost:5000/booking/${params.id}`),
+                loader: ({params}) => fetch(`https://travel-guru-server-rezwan563.vercel.app/booking/${params.id}`),
             },
             
             {
                 path: ':id/checkout',
                 element: <PrivateRoute><Checkout></Checkout></PrivateRoute>,
-                loader: ({params}) => fetch(`http://localhost:5000/booking/${params.id}`),
+                loader: ({params}) => fetch(`https://travel-guru-server-rezwan563.vercel.app/booking/${params.id}`),
             }
         ]
         

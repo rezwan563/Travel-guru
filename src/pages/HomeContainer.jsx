@@ -6,7 +6,7 @@ const HomeContainer = () => {
     const [destinations, setDestinations] = useState([])
 
     useEffect(() => {
-        fetch('http://localhost:5000/destinations')
+        fetch('https://travel-guru-server-rezwan563.vercel.app/destinations')
             .then(res => res.json())
             .then(data => setDestinations(data))
             .catch(error => console.error(error))

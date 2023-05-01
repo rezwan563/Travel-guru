@@ -89,7 +89,7 @@ const Register = () => {
 
                         <Form.Group className="mb-3" controlId="formBasicPassword">
                             <Form.Label>Password</Form.Label>
-                            <Form.Control onChange={handlePassword} type={hidden ? 'password' : 'text'}
+                            <Form.Control onBlur={() => setError('')} onChange={handlePassword} type={hidden ? 'password' : 'text'}
                                 placeholder="Password" required />
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formBasicConfirm">
