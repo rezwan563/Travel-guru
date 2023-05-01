@@ -37,7 +37,7 @@ const Login = () => {
     const handleGoogleLogin = () => {
         googleLogin()
             .then(result => {
-                console.log("Google login successful")
+                navigate(from);
             })
             .catch(error => console.log(error.message))
     }
@@ -50,6 +50,9 @@ const Login = () => {
                 <div className=' '>
                     <Form className='w-50 m-auto' onSubmit={handleLogin}>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
+                            <div>
+                                <h3>Please Login</h3>
+                            </div>
                             <Form.Label>Email address</Form.Label>
                             <Form.Control onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Enter email" required />
                             

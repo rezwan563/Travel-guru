@@ -72,6 +72,9 @@ const Register = () => {
                 <div className=' '>
                     <Form className='w-50 m-auto' onSubmit={handleSignin}>
                         <Form.Group className="mb-3" controlId="formBasicName">
+                            <div>
+                                <h3>Please Register</h3>
+                            </div>
                             <Form.Label>Name</Form.Label>
                             <Form.Control onChange={(e) => setName(e.target.value)} type="text" placeholder="Enter Name" required />
 
