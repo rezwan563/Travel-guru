@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useContext, useEffect, useState } from 'react';
 import { Button, Container, Form } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate, useNavigation } from 'react-router-dom';
 import { AuthContext } from '../provider/AuthProvider';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
@@ -15,6 +15,11 @@ const Register = () => {
     const [error, setError] = useState('')
     const [accepted, setAccepted] = useState(false)
     const [hidden, setHidden] = useState(true);
+    const navigate = useNavigate();
+    const location = useLocation();
+    console.log(location);
+
+    const from = location.state?.from?.from?.pathname || '/'
 
     const { createUser, updateUserProfile } = useContext(AuthContext);
 
@@ -30,12 +35,17 @@ const Register = () => {
             .then(() => {
                 updateUserProfile(name, photo)
                     .then(() => {
-                        e.target.reset()
+                        e.target.reset();
+                        navigate(from);
                     })
                     .catch(error => console.error(error))
             })
             .catch(error => {
                 console.log(error.message)
+                if(error.message === "Firebase: Error (auth/email-already-in-use)."){
+                    setError("Email already in use");
+
+                }
 
             })
     }

@@ -5,12 +5,10 @@ import HotelComponent from "./HotelComponent";
 const Checkout = () => {
 
     const locationDetails = useLoaderData();
-    console.log(locationDetails);
 
     const { name, latitude, longitude } = locationDetails;
     
     const mapLocationArray = [latitude, longitude];
-    console.log({mapLocationArray});
      
     return (
         <div>

@@ -2,7 +2,7 @@
 import React, { useContext, useState } from 'react';
 import { Button, Container, Form } from 'react-bootstrap';
 import { FaGoogle } from 'react-icons/fa'
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../provider/AuthProvider';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
@@ -13,6 +13,7 @@ const Login = () => {
     const [hidden, setHidden] = useState(true);
     const [accepted, setAccepted] = useState(false)
     const location = useLocation()
+    // console.log(location);
     const navigate = useNavigate();
     const from = location.state?.from?.pathname || '/';
 
@@ -28,11 +29,18 @@ const Login = () => {
 
         })
         .catch(error => {
-            alert(error.message)
-            if(error.message === "Firebase: Error (auth/wrong-password)."){
+            const errorMessage = error.message;
+            if(errorMessage === "Firebase: Error (auth/wrong-password)."){
                 setError("Password did not match. Try again")
+                alert("Password did not match. Try again")
             }
-            setError(error.message);
+            else if(errorMessage === 'Firebase: Error (auth/user-not-found).'){
+                setError("User not found. Check your email")
+                alert("User not found. Check your email")
+            }
+            else{
+                setError(errorMessage)
+            }
             
         })
     }
@@ -73,7 +81,7 @@ const Login = () => {
                                     }}></FaEye>
                             }
                         </Form.Group>
-                        <Form.Text className={error ?'text-dange' : ''}>
+                        <Form.Text className={error ?'text-danger' : ''}>
                             {error && error}
                         </Form.Text>
                         <Form.Group className="mb-3" controlId="formBasicCheckbox">
@@ -83,7 +91,7 @@ const Login = () => {
                             Login
                         </Button>
                         <br />
-                        <Form.Text>Don't have an accout?<span><Link to='/auth_user/register'> Create one</Link></span></Form.Text>
+                        <Form.Text>Don't have an accout?<span><Link to='/auth_user/register' state={{from: location.state}}> Create one</Link></span></Form.Text>
                     </Form>
                     <div className='d-flex justify-content-center mt-2'>
                         <button onClick={handleGoogleLogin} className='btn border border-2'><FaGoogle className='me-2 fs-5'></FaGoogle> Continue with Google</button>
