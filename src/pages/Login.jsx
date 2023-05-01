@@ -28,7 +28,10 @@ const Login = () => {
 
         })
         .catch(error => {
-            console.log(error.message)
+            alert(error.message)
+            if(error.message === "Firebase: Error (auth/wrong-password)."){
+                setError("Password did not match. Try again")
+            }
             setError(error.message);
             
         })
@@ -70,7 +73,7 @@ const Login = () => {
                                     }}></FaEye>
                             }
                         </Form.Group>
-                        <Form.Text className={error && 'text-dange'}>
+                        <Form.Text className={error ?'text-dange' : ''}>
                             {error && error}
                         </Form.Text>
                         <Form.Group className="mb-3" controlId="formBasicCheckbox">
