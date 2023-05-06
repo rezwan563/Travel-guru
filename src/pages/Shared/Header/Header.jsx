@@ -24,10 +24,10 @@ const Header = () => {
                 </div>
                 <div className=''>
                 
-                    <ActiveLink className='me-2 text-black' to='/news'>News</ActiveLink>
-                    <ActiveLink className='me-2 text-black' to="/destination">Destination</ActiveLink>
-                    <ActiveLink className='me-2 text-black' to='/blog'>Blog</ActiveLink>
-                    <ActiveLink className='me-2 text-black' to='/contact'>Contact</ActiveLink>
+                    <ActiveLink to='/news'>News</ActiveLink>
+                    <ActiveLink to="/destination">Destination</ActiveLink>
+                    <ActiveLink to='/blog'>Blog</ActiveLink>
+                    <ActiveLink to='/contact'>Contact</ActiveLink>
                     {
                         user && <img className='avatar-img me-2' src={user.photoURL} alt="" />
                     }
